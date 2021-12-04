@@ -1,44 +1,45 @@
 import React, { useState } from "react";
+import Image from 'next/image';
+import { games } from "../../utils/games";
+import { Button } from "../Form/Button/Index";
 import Navbar from "../Navbar/Index";
-import { Container, Wrapper, List, ListItem } from "./Styles";
-import Image from "next/image";
-
-import diablo4 from '../../../public/assets/diablo4.svg';
-import hearthstone from '../../../public/assets/hearthstone.svg';
-import wow from '../../../public/assets/wow.svg';
-import diablo from '../../../public/assets/diablo1.svg';
-import starCraft2 from '../../../public/assets/starCraft2.svg';
+import SelectGame from "./SelectGame/SelectGame";
+import { Container, Wrapper, GameInfos, GameTrailer } from "./Styles";
 
 
 export default function Hero() {
-    const [backgroundUrl, setBackgroundUrl] = useState('./assets/bannerDiablo.png');
+    const [game, setGame] = useState(games[0]);
 
-    function changeGame(gameUrl : string) {
-        setBackgroundUrl(gameUrl);
+    function getGameById(id: string) {
+        setGame(games.find(x => x.id === id));
     }
 
+
     return (
-        <Container backgroundUrl={backgroundUrl}>
+        <Container backgroundUrl={game.backgroundUrl}>
             <Navbar />
             <Wrapper>
-                <List>
-                    <ListItem onClick={() => changeGame("./assets/bannerDiablo.png")}>
-                        <Image src={diablo4} height="50px" />
-                    </ListItem>
-                    <ListItem onClick={() => changeGame("./assets/bannerHearthstone.png")}>
-                        <Image src={hearthstone} height="50px" />
-                    </ListItem>
-                    <ListItem onClick={() => changeGame("./assets/bannerWow.png")}>
-                        <Image src={wow} height="50px" />
-                    </ListItem>
-                    <ListItem onClick={() => changeGame("./assets/bannerDiablo.png")}>
-                        <Image src={diablo} height="50px" />
-                    </ListItem>
-                    <ListItem onClick={() => changeGame("./assets/bannerHearthstone.png")}>
-                        <Image src={starCraft2} height="50px" />
-                    </ListItem>
-                </List>
+                <SelectGame setGame={getGameById} activeGame={game.id} />
+                <GameInfos>
+                    <h1>{game.title}</h1>
+                    <p>{game.description}</p>
+                    <Button>Jogue Agora</Button>
+                </GameInfos>
+                <GameTrailer>
+                    <img className="logo" src={game.logoUrl} />
+                    <div className='trailler'>
+                        <p>ASSISTIR AGORA</p>
+                        <div className="play">
+                            <img className='thumbnail' src={game.thumbnailUrl} />
+                            <div>
+                                <svg width="15" height="19" viewBox="0 0 15 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M14.2539 9.49999L0.552414 0.74626L0.552415 18.2537L14.2539 9.49999Z" fill="#00AEFF" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </GameTrailer>
             </Wrapper>
-        </Container>
+        </Container >
     );
 }
