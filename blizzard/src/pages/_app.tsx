@@ -1,4 +1,3 @@
-import { Head } from "next/document"
 import React from "react"
 import { ThemeProvider } from "styled-components"
 import { GlobalStyle } from "../styles"
