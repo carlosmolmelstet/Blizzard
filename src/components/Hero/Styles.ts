@@ -5,6 +5,7 @@ interface ContainerProps {
 }
 export const Container = styled.div<ContainerProps>`
   background-image: url(${props => props.backgroundUrl});
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
@@ -26,7 +27,14 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   max-width: ${props => props.theme.maxContainer};
   height: calc(100vh - ${props => props.theme.sizes[24]});
+  padding: 0 ${props => props.theme.sizes[16]};
   margin: 0 auto;
+
+  @media(max-width: 650px) {
+      padding: 0 ${props => props.theme.sizes[4]};
+  
+  }
+
 `;
 
 export const GameInfos = styled.div`
@@ -47,6 +55,19 @@ export const GameInfos = styled.div`
     width: 150px;
     justify-content: center;
     margin-top: ${props => props.theme.sizes[10]};
+  }
+
+  @media(max-width: 850px) {
+    h1 {
+    font-size: ${props => props.theme.fontSizes["5xl"]};
+    }
+  }
+
+  @media(max-width: 400px) {
+    h1 {
+      font-size: ${props => props.theme.fontSizes["4xl"]};
+      line-height: 3.5rem;
+    }
   }
 `;
 
@@ -101,7 +122,10 @@ export const GameTrailer = styled.div`
         }
     }
 
+    @media(max-width: 850px) {
+      display: none;
 
+    }
 
 
 `;

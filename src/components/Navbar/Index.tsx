@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Menu, Login, Border } from "./Style";
+import { Container, Menu, Login, Border, MenuSmall } from "./Style";
 import Image from "next/image";
 
 import BlizzardLogo from '../../../public/assets/blizzardLogo.svg';
@@ -41,6 +41,13 @@ export default function Navbar() {
                     Logar
                 </Button>
             </Login>
+            <MenuSmall>
+                    <svg width="28" height="21" viewBox="0 0 28 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 1H28" stroke="white" strokeWidth="1.5" />
+                        <path d="M0 10.3334H28" stroke="white" strokeWidth="1.5" />
+                        <path d="M0 19.6666H28" stroke="white" strokeWidth="1.5" />
+                    </svg>
+                </MenuSmall>
             <Border />
         </Container>
     );
